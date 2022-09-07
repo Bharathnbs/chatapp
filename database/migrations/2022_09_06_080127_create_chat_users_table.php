@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('chat_users', function (Blueprint $table) {
             $table->integer('chat_id');
             $table->integer('user_id');
-            $table->timestamps();
         });
     }
 
