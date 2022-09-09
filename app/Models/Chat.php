@@ -9,6 +9,8 @@ class Chat extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+    
     public function Message()
     {
         return $this->hasMany(Message::class);

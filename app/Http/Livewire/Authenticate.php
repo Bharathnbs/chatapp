@@ -9,21 +9,23 @@ use Livewire\Component;
 class Authenticate extends Component
 {
 
-    public $email, $password, $validate;
+    public $email, $password, $validate, $title='Login Page';
 
     protected $rules = [
-        'email' => 'required',
+        'email' => 'required|email|exists:users,email',
         'password' => 'required',
     ];
 
     public function authenticate()
     {
-         $this->validate();
-       if(Auth::attempt($this->validate()))
-       {
+        $validated = $this->validate();
+        
+        if(Auth::attempt($validated)) {
             session()->regenerate();
-            return redirect()->route('user.create');
-       }
+            return redirect()->route('app');
+        } else {
+            $this->addError('password', 'Password mismatch');
+        }
 
        return back()->withErrors([ 'please check email and password' ]);
 
