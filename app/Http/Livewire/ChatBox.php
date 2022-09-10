@@ -9,7 +9,7 @@ use App\Models\Chat;
 
 class ChatBox extends Component
 {
-    public $chat, $messages = [], $input;
+    public $chat, $messages = [], $input, $title='chat Box';
 
     protected $listeners = ['userselected' => 'addChatUser'];
 

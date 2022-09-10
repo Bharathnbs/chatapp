@@ -11,16 +11,22 @@ class ChatUser extends Component
 {
     public  $name, $title = 'Chat App', $chats, $user_id;
 
+    protected $rules =[
+        'name' => 'required',
+    ];
+
     public function mount()
     {
         $chatIds = DB::table('chat_users')->where('user_id', auth()->id())->get()->pluck('chat_id');
+        // dd($chatIds);
         $this->chats = Chat::find($chatIds);
     }
 
     public function openChat()
     {
+        $user = User::find($this->user_id);
         $chat = Chat::create([
-            'name' => 'New Chat with B2',
+            'name' => $user->name,
         ]);
 
         DB::table('chat_users')->insert([
@@ -32,6 +38,15 @@ class ChatUser extends Component
         $this->chats = Chat::find($chatIds);
 
         $this->emitTo('chat-box', 'userselected', $chat->id);
+    }
+
+    public function delete($id)
+    {   
+
+        $chat = Chat::find($id);
+        $chat->delete();
+        return redirect()->to('/');
+        
     }
  
     public function render()
