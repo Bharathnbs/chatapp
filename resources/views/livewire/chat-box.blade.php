@@ -1,5 +1,5 @@
 <div> 
-    <div class="card card-boder-primary"  style="width:70%; position:absolute; left:480px; top:0; border-radius:0%; " >
+    <div class="card card-boder-primary"  style="width:69%; position:absolute; left:480px; top:0; border-radius:0%; " >
         <div class="card-header" style="background-color:#142F43; border-radius:0%; font-size:30px; color:white">
             {{ optional($chat)->name }}
         </div>
@@ -12,7 +12,7 @@
         </div>
         @if ($chat)
             <div class="card-footer" wire:poll.1000ms="updateMessages({{ $chat->id }})" style="background-color:#142F43; border-radius=0%;" >
-                <input class="form-control" style="width:85%; left:20px; position:absolute;"type="text" wire:model.defer="input">
+                <input class="form-control" style="width:85%; left:20px; position:absolute; border-radius:24px;"type="text" wire:model.defer="input">
                 <button class="btn btn-primary" wire:click="send" style="position:relative; left:92%; top:0px;">send</button>
             </div>
         @endif

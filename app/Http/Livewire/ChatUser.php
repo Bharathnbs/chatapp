@@ -42,7 +42,6 @@ class ChatUser extends Component
 
     public function delete($id)
     {   
-
         $chat = Chat::find($id);
         $chat->delete();
         return redirect()->to('/');
